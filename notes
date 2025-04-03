@@ -1,0 +1,19 @@
+
+// Create topic
+bin/kafka-topics.sh --create --topic topic_matei --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+// Describe
+bin/kafka-topics.sh --describe --topic curva --bootstrap-server localhost:9092
+
+// Write
+bin/kafka-console-producer.sh --topic topic_matei --bootstrap-server localhost:9092
+bin/kafka-console-producer.sh --topic topic_matei --bootstrap-server localhost:9092 --property "parse.key=true" --property "key.separator=:"
+
+// Read
+bin/kafka-console-consumer.sh --topic curva --from-beginning --bootstrap-server localhost:9092
+
+
+
+
+
+

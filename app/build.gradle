@@ -1,0 +1,67 @@
+
+plugins {
+	id 'application'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	// Kafka
+	implementation 'org.apache.kafka:kafka-clients:3.0.0'
+
+	// Javalin - Web Framework
+	implementation "io.javalin:javalin:6.5.0"
+	implementation "com.fasterxml.jackson.core:jackson-databind:2.16.1"
+
+	// Logging
+	implementation 'org.slf4j:slf4j-api:2.0.17'
+	implementation 'org.slf4j:slf4j-simple:2.0.17'
+
+	// Test
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.16.1'
+	testImplementation 'org.mockito:mockito-core:5.16.1'
+}
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+application {
+	mainClass = 'conduktor.App'
+}
+
+tasks.register('fatJar', Jar) {
+	archiveClassifier.set('fat')
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+	manifest {
+		attributes 'Main-Class': application.mainClass.get()
+	}
+
+	from {
+		configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	with jar
+}
+
+build.dependsOn fatJar
+
+tasks.named('test') {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+		exceptionFormat "full"
+		showExceptions true
+		showCauses true
+		showStackTraces true
+		showStandardStreams true
+	}
+}
