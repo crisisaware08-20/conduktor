@@ -20,17 +20,6 @@ public class Person {
 		public String street;
 		public String town;
 		public String postode;
-		@Override
-		public String toString() {
-			return "Address [street=" + street + ", town=" + town + ", postode=" + postode + "]";
-		}
-	}
-
-	@Override
-	public String toString() {
-		return "Person [_id=" + _id + ", name=" + name + ", dob=" + dob + ", address=" + address + ", telephone="
-				+ telephone + ", pets=" + pets + ", score=" + score + ", email=" + email + ", url=" + url + ", description="
-				+ description + ", verified=" + verified + ", salary=" + salary + ", getClass()=" + getClass() + "]";
 	}
 
 }
