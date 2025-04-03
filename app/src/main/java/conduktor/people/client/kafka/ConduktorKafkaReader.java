@@ -32,9 +32,9 @@ public class ConduktorKafkaReader {
 
 		kafkaConsumer
 				.assign(List.of(TOPIC_PARTITION_0, TOPIC_PARTITION_1, TOPIC_PARTITION_2));
-		kafkaConsumer.seek(TOPIC_PARTITION_0, offset);
-		kafkaConsumer.seek(TOPIC_PARTITION_1, offset);
-		kafkaConsumer.seek(TOPIC_PARTITION_2, offset);
+		kafkaConsumer.seek(new TopicPartition(topic, 0), offset);
+		kafkaConsumer.seek(new TopicPartition(topic, 1), offset);
+		kafkaConsumer.seek(new TopicPartition(topic, 2), offset);
 
 		List<Person> messages = new ArrayList<>();
 		int emptyPolls = 0;
