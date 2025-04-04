@@ -11,15 +11,11 @@ import org.apache.kafka.common.TopicPartition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import conduktor.people.config.KafkaConfig;
 import conduktor.people.model.Person;
 
 public class ConduktorKafkaReader {
 
 	private static Logger LOGGER = LoggerFactory.getLogger(ConduktorKafkaReader.class);
-	private static TopicPartition TOPIC_PARTITION_0 = new TopicPartition(KafkaConfig.TOPIC, 0);
-	private static TopicPartition TOPIC_PARTITION_1 = new TopicPartition(KafkaConfig.TOPIC, 1);
-	private static TopicPartition TOPIC_PARTITION_2 = new TopicPartition(KafkaConfig.TOPIC, 2);
 	private static int MAX_EMPTY_POLLS = 2;
 
 	private KafkaConsumer<String, Person> kafkaConsumer;
@@ -31,7 +27,7 @@ public class ConduktorKafkaReader {
 	public List<Person> read(String topic, int offset, int number) {
 
 		kafkaConsumer
-				.assign(List.of(TOPIC_PARTITION_0, TOPIC_PARTITION_1, TOPIC_PARTITION_2));
+				.assign(List.of(new TopicPartition(topic, 0), new TopicPartition(topic, 1), new TopicPartition(topic, 2)));
 		kafkaConsumer.seek(new TopicPartition(topic, 0), offset);
 		kafkaConsumer.seek(new TopicPartition(topic, 1), offset);
 		kafkaConsumer.seek(new TopicPartition(topic, 2), offset);
