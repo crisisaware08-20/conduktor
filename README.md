@@ -1,6 +1,6 @@
 ### How to run it locally ?
 
-1. Start kafka and create the topic with three partitions 
+#### Start kafka and create the topic with three partitions 
 ```bash
 docker compose -f docker-compose-kafka.yml up 
 ```
@@ -13,7 +13,7 @@ Alternatively, the application accept bootstrap server and topic as environment 
 See `docker-compose.yml` for more details.
 
 
-2. Start application, it should be accessible on localhost:8080
+#### Start application, it should be accessible on localhost:8080
 
 Open a new terminal and run the following command
 
@@ -22,7 +22,7 @@ docker compose up --build --force-recreate
 ```
 
 
-### Example usage
+#### Example usage
 ```bash
 http://localhost:8080/topic/persons-topic/5?count=10
 http://localhost:8080/topic/persons-topic/5
@@ -30,7 +30,7 @@ http://localhost:8080/topic/persons-topic
 http://localhost:8080/topic/persons-topic?count=20
 ```
 
-### What I would think of furhther improvements ?
+#### What I would think of furhther improvements ?
 
 I would have a cache in between to save application from making any unnecessary calls to kafka.
 
