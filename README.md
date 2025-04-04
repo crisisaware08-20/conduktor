@@ -32,3 +32,5 @@ http://localhost:8080/topic/persons-topic?count=20
 ### What I would think of furhther improvements ?
 
 I would have a cache in between to save application from making any unnecessary calls to kafka.
+
+I don't like the package name 'people' probablly would have used 'persons' or 'challenge' instead :).
