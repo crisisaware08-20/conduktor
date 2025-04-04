@@ -19,7 +19,7 @@ Open a new terminal and run the following command
 
 ```bash
 docker compose up --build --force-recreate
-
+```
 
 
 ### Example usage
