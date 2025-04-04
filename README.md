@@ -23,14 +23,17 @@ docker compose up --build --force-recreate
 
 
 ### Example usage
-
+```bash
 http://localhost:8080/topic/persons-topic/5?count=10
 http://localhost:8080/topic/persons-topic/5
 http://localhost:8080/topic/persons-topic
 http://localhost:8080/topic/persons-topic?count=20
+```
 
 ### What I would think of furhther improvements ?
 
 I would have a cache in between to save application from making any unnecessary calls to kafka.
 
 I don't like the package name 'people' probablly would have used 'persons' or 'challenge' instead :).
+
+... need a coffee
